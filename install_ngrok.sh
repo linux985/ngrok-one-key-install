@@ -160,9 +160,9 @@ function disable_selinux(){
     fi
 }
 function fun_set_ngrok_user_env(){
-    str_single_user=""
+    str_single_user="y"
     echo  -e "\033[33mSetting script environment, single-user or multi-user?\033[0m"
-    read -p "(single-user please input: y,multi-user input: n,Default [Y]):" str_single_user
+#   read -p "(single-user please input: y,multi-user input: n,Default [Y]):" str_single_user
     case "${str_single_user}" in
     y|Y|Yes|YES|yes|yES|yEs|YeS|yeS)
     echo "You will set single-user!"
@@ -180,8 +180,8 @@ function fun_set_ngrok_user_env(){
 }
 function fun_set_ngrok_domain(){
     # Set ngrok domain
-    NGROK_DOMAIN=""
-    read -p "Please input domain for Ngrok(e.g.:ngrok.clang.cn):" NGROK_DOMAIN
+    NGROK_DOMAIN="ngrok.godfrey.wiki"
+#   read -p "Please input domain for Ngrok(e.g.:ngrok.clang.cn):" NGROK_DOMAIN
     check_input
 }
 function fun_randstr(){
@@ -195,8 +195,9 @@ function fun_randstr(){
 }
 function fun_set_ngrok_pass(){
     # Set ngrok pass
-    ngrokpass=`fun_randstr`
-    read -p "Please input password for Ngrok(Default Password: ${ngrokpass}):" ngrok_pass
+    #ngrokpass=`fun_randstr`
+    ngrokpass=$NGROK_DOMAIN
+#   read -p "Please input password for Ngrok(Default Password: ${ngrokpass}):" ngrok_pass
     if [ "${ngrok_pass}" = "" ]; then
         ngrok_pass="${ngrokpass}"
     fi
